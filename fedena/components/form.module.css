@@ -10,3 +10,31 @@
        .session{
           box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.35);
        }
+       .main{
+         display: grid ;
+         place-content: center;
+         height: 100dvh;     
+       }
+       .div{
+          box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.35);  
+          padding: 2rem;
+          border-radius: 10px;
+          border-top: 2px solid rgb(57, 228, 57);
+          width: 100%;
+          max-width: 1200px;      
+       }
+       .h1{
+          font: bold;
+          font-size: 1.2rem;
+          margin: 4 0px;       
+       }
+       .form{
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;            
+       }
+       .element{
+       background-color: whitesmoke;
+        padding: 2rem;
+       box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.35);
+        }

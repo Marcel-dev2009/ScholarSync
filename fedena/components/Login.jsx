@@ -13,6 +13,7 @@ export default function Login() {
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
   const [error ,   setError] = useState('');
+  const [loading , setLoading] = useState(false);
  const router = useRouter()
  const handleSubmit = async (e) => {
      e.preventDefault();
@@ -24,14 +25,16 @@ export default function Login() {
        const res = await signIn('credentials' , {
          email , password , redirect : false
        });
-       if (res === undefined){
-      
-         return null;
-       } else if(res.error){
-         setError('Invalid Credentials');
-         return;
+       if (res.ok){
+        setLoading(true);
        }
-       router.replace('/Dashboard');
+       if(res.error){
+        setError('Invalid Credentials');
+        setLoading(false);
+        return;
+    
+       }
+       router.replace('Dashboard');
      } catch (error) {
       console.log('Error Validating User' , error)
      }
@@ -84,12 +87,14 @@ export default function Login() {
         </div>
         
          </div>
-     <Suspense fallback={<div className="border-2 w-6 h-6 rounded-full animate-spin"></div>}>
-     <Link href="Dashboard/">
-       <button type="submit"
-         className=" rounded-2xl border outline-0 text-black border-gray-500 hover:bg-green-500 hover:text-white px-4 py-2 w-30">Sign In</button>
-       </Link>
-     </Suspense>
+      {
+        loading ? (
+          <div className="animate-pulse">Loading</div>
+        ) : (
+          <button type="submit"
+          className=" rounded-2xl border outline-0 text-black border-gray-500 hover:bg-green-500 hover:text-white px-4 py-2 w-30">Sign In</button>
+        )
+      }
      </div>
   </div>
 </div> 
